@@ -1,0 +1,57 @@
+[user]
+	email = email@email.mail
+	name = username
+[core]
+	editor = vim
+[alias]
+	a = add
+	ap = add -p
+	c = commit -m
+	ca = commit --amend
+	cac = commit --amend --no-edit
+	co = checkout
+	d = diff
+	ds = diff --staged
+	dt = difftool
+	dts = difftool --staged
+	mt = mergetool
+	s = status -sb
+	sa = stash apply
+	ss = stash save
+	sl = stash list
+	sp = stash pop
+	ssh = stash show
+	pr = pull --rebase
+	r = rebase
+	ri = rebase -i
+	ria = rebase -i --autosquash
+	rco = rebase --continue
+	cop = "!f(){ git checkout $(git branch --list \"*$1*\" | cut -c3-); }; f"
+	cr = !start \"http://srv-tfs02:8080/tfs/dotNET/_git/Majesty/commit/\"$(git rev-list $@ -1 | head -1)
+	start = "!f(){ git checkout -b \"$(git rev-parse --abbrev-ref HEAD)_$1_$2\";}; f"
+	df = diff --diff-filter=MUXBR -C -w --word-diff=color --word-diff-regex '[[:alnum:]=]+|[^[:space:]]' --inter-hunk-context=10
+	dfs = !git df --staged
+	lg = log --oneline --graph --decorate --all
+	ld = log --pretty=format:'%C(yellow)%h%Creset%d%Creset% s%C(3)%C(6)% aN% ad %C(7)' --date=relative --graph --branches --remotes --tags --graph --decorate --date-order --abbrev-commit -n 25
+	ldd = log --pretty=format:'%C(yellow)%h%Creset%d%Creset% s%C(3)%C(6)% aN% ad %C(7)' --date=relative --graph --branches --remotes --tags --graph --decorate --date-order --abbrev-commit
+	fe = fetch --prune
+[mergetool]
+	keepBackup = false
+	prompt = false
+	path = C:/Program Files/SourceGear/Common/DiffMerge/sgdm.exe
+[diff]
+	tool = vs
+	guitool = vsdiffmerge
+[merge]
+	tool = diffmerge
+[mergetool "diffmerge"]
+	trustExitCode = true
+	cmd = C:/Program\\ Files/SourceGear/Common/DiffMerge/sgdm.exe -merge -result=\"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
+[mergetool "sortedmerge"]
+	cmd = \"C:/Git/Tools/git-sorted-merge\" \"$LOCAL\" \"$REMOTE\" \"$BASE\" \"$MERGED\"
+[difftool "vs"]
+	cmd = \"C:/Program Files (x86)/Microsoft Visual Studio 12.0/Common7/IDE/vsDiffMerge.exe\" \"$LOCAL\" \"$REMOTE\" /t
+[color "interactive"]
+	prompt = normal
+[color]
+	ui = auto
