@@ -26,7 +26,7 @@
 	ri = rebase -i
 	ria = rebase -i --autosquash
 	rco = rebase --continue
-	cop = "!f(){ git checkout $(git branch --list \"*$1*\" | cut -c3-); }; f"
+	cop = "!f(){ git checkout $(git branch --list | grep -i $1 | cut -c3-); }; f"
 	cr = !start \"http://srv-tfs02:8080/tfs/dotNET/_git/Majesty/commit/\"$(git rev-list $@ -1 | head -1)
 	start = "!f(){ git checkout -b \"$(git rev-parse --abbrev-ref HEAD)_$1_$2\";}; f"
 	df = diff --diff-filter=MUXBR -C -w --word-diff=color --word-diff-regex '[[:alnum:]=]+|[^[:space:]]' --inter-hunk-context=10
